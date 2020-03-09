@@ -1,0 +1,45 @@
+body {
+    background: #eee;
+    padding: 0;
+}
+
+#root {
+    margin-top: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.name-fields {
+    height: 30%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#login {
+    position: relative;
+    margin-top: 10px;
+    width: 150px;
+    margin-right: 10px;   
+}
+
+#search {
+    position: relative;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 150px;
+}
+
+#create {
+    position: relative;
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 150px;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+}
