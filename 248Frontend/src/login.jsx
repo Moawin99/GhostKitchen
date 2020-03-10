@@ -10,11 +10,11 @@ class CreateLogin extends Component {
             lastName: ""
         }
         this.createUser = this.createUser.bind(this);
+        this.getUser = this.getUser.bind(this);
     }
 
      createUser () {      
-    
-    axios.post('/users', {
+      axios.post('/user', {
         firstName: this.state.firstName,
         lastName: this.state.lastName
     }).then(function (response) {
@@ -22,6 +22,17 @@ class CreateLogin extends Component {
     }).catch(function (error) {
         console.log(error); 
     });
+    }
+
+    getUser () {
+        axios.get('/user/login', {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
     render(){
     return (
@@ -36,12 +47,11 @@ class CreateLogin extends Component {
             }} id="lastName"></input>
        
             <div className="button-wrapper">
-                <button id="login">Login</button>
+                <button onClick={this.getUser} id="login">Login</button>
                 <button id="search">Search</button>
                 <button onClick={this.createUser} id="create">Create</button>
             </div>
         <pre>{JSON.stringify(this.state)}</pre>
-        <p>{this.props.msg}</p>
          </div>
     );
 }

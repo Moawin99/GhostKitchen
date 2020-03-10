@@ -2,9 +2,12 @@ package JavaBackend.app.requests;
 
 import JavaBackend.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 
 @RestController
@@ -20,6 +23,16 @@ public class UserController {
     @PostMapping("/user")
     public User createUser(@RequestBody User entity){
         return repository.save(entity);
+    }
+
+    @GetMapping("/user/login")
+    public ResponseEntity<?> getUser(@RequestBody User entity){
+        if(repository.getByFirstNameAndLastName(entity.getFirstName(), entity.getLastName()) != null){
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        }
+        else{
+            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/user/{id}")
