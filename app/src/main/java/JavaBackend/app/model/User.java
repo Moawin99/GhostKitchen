@@ -1,4 +1,4 @@
-package model;
+package JavaBackend.app.model;
 
 import javax.persistence.*;
 

@@ -1,8 +1,7 @@
-package requests;
+package JavaBackend.app.requests;
 
+import JavaBackend.app.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-
 }

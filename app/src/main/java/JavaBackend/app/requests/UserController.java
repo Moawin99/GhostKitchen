@@ -1,10 +1,11 @@
-package requests;
+package JavaBackend.app.requests;
 
-import model.User;
+import JavaBackend.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 public class UserController {
