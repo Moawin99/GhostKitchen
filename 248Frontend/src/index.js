@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CreateLogin from './login';
+import CreateLogin from '../src/components/login.jsx';
 
 
 ReactDOM.render(
-    <CreateLogin msg="hello" />,
+    <CreateLogin />,
     document.getElementById("root")
 );
 

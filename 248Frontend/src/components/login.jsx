@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import '../src/styles.css';
+import '../styleSheets/loginStyle.css';
 
 class CreateLogin extends Component {
     constructor(props){
@@ -13,7 +13,7 @@ class CreateLogin extends Component {
         this.getUser = this.getUser.bind(this);
     }
 
-     createUser () {      
+     createUser () {        
       axios.post('/user', {
         firstName: this.state.firstName,
         lastName: this.state.lastName
@@ -25,15 +25,16 @@ class CreateLogin extends Component {
     }
 
     getUser () {
-        axios.get('/user/login', {
+        axios.post('/user/login', {
             firstName: this.state.firstName,
             lastName: this.state.lastName
         }).then(function (response) {
             console.log(response);
-        }).catch(function (error) {
+        }).catch(function (error){
             console.log(error);
         });
     }
+
     render(){
     return (
         <div className="name-fields">
@@ -51,7 +52,7 @@ class CreateLogin extends Component {
                 <button id="search">Search</button>
                 <button onClick={this.createUser} id="create">Create</button>
             </div>
-        <pre>{JSON.stringify(this.state)}</pre>
+            <pre>{JSON.stringify(this.state)}</pre>
          </div>
     );
 }
