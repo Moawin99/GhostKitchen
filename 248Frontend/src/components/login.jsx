@@ -52,7 +52,7 @@ class CreateLogin extends Component {
                 <button id="search">Search</button>
                 <button onClick={this.createUser} id="create">Create</button>
             </div>
-            <pre>{JSON.stringify(this.state)}</pre>
+            {/* <pre>{JSON.stringify(this.state)}</pre> */}
          </div>
     );
 }

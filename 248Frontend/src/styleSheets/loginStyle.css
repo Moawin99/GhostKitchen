@@ -4,17 +4,22 @@ body {
 }
 
 #root {
-    margin-top: 15%;
+    margin-top: 12em;
     display: flex;
     justify-content: center;
+    padding: 10em, 10em, 10em, 10em;
+    width: 25em;
 }
 
 .name-fields {
-    height: 30%;
-    width: 30%;
+    height: 15em;
+    width: 20em;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 55em;
+    
+
 }
 
 #login {
