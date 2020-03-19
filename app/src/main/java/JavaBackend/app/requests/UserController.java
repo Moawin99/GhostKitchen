@@ -26,8 +26,14 @@ public class UserController {
 
     @PostMapping("/user/login")
     public ResponseEntity<?> getUser(@RequestBody User entity){
-        if(repository.getByFirstNameAndLastName(entity.getFirstName(), entity.getLastName()) != null){
-            return new ResponseEntity<>(true, HttpStatus.OK);
+        if(repository.getByUserName(entity.getUserName()) != null){
+            User temp = repository.getByUserName(entity.getUserName());
+            if (entity.getPassword().equals(temp.getPassword())){
+                return new ResponseEntity<>(true, HttpStatus.OK);
+            }
+            else{
+                return new ResponseEntity<>(false, HttpStatus.CONFLICT);
+            }
         }
         else{
             return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
@@ -50,6 +56,8 @@ public class UserController {
     public void deleteUser(@PathVariable Long id){
         repository.deleteById(id);
     }
+
+
 
 
 }

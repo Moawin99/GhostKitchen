@@ -1,0 +1,11 @@
+.register-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 30em;
+	margin-left: 40em;
+	margin-top: 4em;
+}
+
+body {
+	background-color: lightblue;
+}

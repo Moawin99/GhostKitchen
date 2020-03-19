@@ -1,50 +1,35 @@
-body {
-    background: #eee;
-    padding: 0;
-}
-
-#root {
-    margin-top: 12em;
-    display: flex;
-    justify-content: center;
-    padding: 10em, 10em, 10em, 10em;
-    width: 25em;
-}
-
 .name-fields {
-    height: 15em;
-    width: 20em;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 55em;
-    
-
+	height: 15em;
+	width: 20em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-left: 45em;
 }
 
 #login {
-    position: relative;
-    margin-top: 10px;
-    width: 150px;
-    margin-right: 10px;   
+	position: relative;
+	margin-top: 10px;
+	width: 150px;
+	margin-right: 10px;
 }
 
 #search {
-    position: relative;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 150px;
+	position: relative;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 150px;
 }
 
 #create {
-    position: relative;
-    margin-top: 10px;
-    margin-left: 10px;
-    width: 150px;
+	position: relative;
+	margin-top: 10px;
+	margin-left: 10px;
+	width: 150px;
 }
 
 .button-wrapper {
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
