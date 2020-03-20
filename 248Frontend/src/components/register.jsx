@@ -41,56 +41,56 @@ class Register extends Component {
 	render() {
 		return (
 			<div className="register-wrapper">
-				<label>First Name:</label>
+				<label className="register-text">First Name:</label>
 				<input
 					onChange={(e) => {
 						this.setState({ firstName: e.target.value });
 					}}
 					className="inputfield"
 				/>
-				<label>Last Name:</label>
+				<label className="register-text">Last Name:</label>
 				<input
 					onChange={(e) => {
 						this.setState({ lastName: e.target.value });
 					}}
 					className="inputfield"
 				/>
-				<label>Username:</label>
+				<label className="register-text">Username:</label>
 				<input
 					onChange={(e) => {
 						this.setState({ userName: e.target.value });
 					}}
 					className="inputfield"
 				/>
-				<label>Password:</label>
+				<label className="register-text">Password:</label>
 				<input
 					onChange={(e) => {
 						this.setState({ password: e.target.value });
 					}}
 					className="inputfield"
 				/>
-				<label>Street:</label>
+				<label className="register-text">Street:</label>
 				<input
 					onChange={(e) => {
 						this.setState({ streetName: e.target.value });
 					}}
 					className="inputfield"
 				/>
-				<label>City:</label>
+				<label className="register-text">City:</label>
 				<input
 					onChange={(e) => {
 						this.setState({ city: e.target.value });
 					}}
 					className="inputfield"
 				/>
-				<label>State:</label>
+				<label className="register-text">State:</label>
 				<input
 					onChange={(e) => {
 						this.setState({ state: e.target.value });
 					}}
 					className="inputfield"
 				/>
-				<label>Zip:</label>
+				<label className="register-text">Zip:</label>
 				<input
 					onChange={(e) => {
 						this.setState({ zip: e.target.value });
@@ -98,7 +98,9 @@ class Register extends Component {
 					className="inputfield"
 				/>
 				<div id="button-wrapper">
-					<button onClick={this.createUser}>Register</button>
+					<button id="register-button" onClick={this.createUser}>
+						Register
+					</button>
 				</div>
 			</div>
 		);
