@@ -7,8 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-
-
 @RestController
 public class UserController {
     @Autowired
@@ -25,20 +23,21 @@ public class UserController {
     }
 
     @PostMapping("/user/login")
-    public ResponseEntity<?> getUser(@RequestBody User entity){
+    public ResponseEntity<?> login(@RequestBody User entity){
         if(repository.getByUserName(entity.getUserName()) != null){
             User temp = repository.getByUserName(entity.getUserName());
-            if (entity.getPassword().equals(temp.getPassword())){
-                return new ResponseEntity<>(true, HttpStatus.OK);
+            if(temp.getPassword().equals(entity.getPassword())){
+                return new ResponseEntity<>(temp, HttpStatus.OK);
             }
-            else{
-                return new ResponseEntity<>(false, HttpStatus.CONFLICT);
+            else {
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             }
         }
         else{
-            return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 
     @PutMapping("/user/{id}")
     public User saveOrUpdate(@RequestBody User entity, @PathVariable Long id){
