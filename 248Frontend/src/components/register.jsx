@@ -64,6 +64,7 @@ class Register extends Component {
 				/>
 				<label className="register-text">Password:</label>
 				<input
+					type="password"
 					onChange={(e) => {
 						this.setState({ password: e.target.value });
 					}}

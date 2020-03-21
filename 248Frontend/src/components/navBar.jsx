@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../styleSheets/navBarStyle.css';
 import logo from '../pictures/ghostKitchenLogo.png';
+import { Link } from 'react-router-dom';
 
 class NavBar extends Component {
 	constructor(props) {
@@ -15,6 +16,9 @@ class NavBar extends Component {
 						<img src={logo} alt="logo" className="logo-picture" />
 						<h1 className="header">Ghost Kitchen</h1>
 					</div>
+					<Link to="/login">
+						<p className="sign-in-header">Sign In</p>{' '}
+					</Link>
 				</nav>
 			</div>
 		);
