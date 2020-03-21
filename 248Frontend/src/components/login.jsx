@@ -1,16 +1,35 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../styleSheets/loginStyle.css';
-import { Link } from 'react-router-dom';
 
 class CreateLogin extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			firstName: '',
+			lastName: '',
 			userName: '',
-			password: ''
+			password: '',
+			streetName: '',
+			city: '',
+			zip: ''
 		};
+		this.createUser = this.createUser.bind(this);
 		this.getUser = this.getUser.bind(this);
+	}
+
+	createUser() {
+		axios
+			.post('/user', {
+				firstName: this.state.firstName,
+				lastName: this.state.lastName
+			})
+			.then(function(response) {
+				console.log(response);
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
 	}
 
 	getUser() {
@@ -35,23 +54,25 @@ class CreateLogin extends Component {
 					onChange={(e) => {
 						this.setState({ userName: e.target.value });
 					}}
-					className="input"
+					id="userName"
 				/>
 				<label>Password:</label>
 				<input
-					type="password"
 					onChange={(e) => {
 						this.setState({ password: e.target.value });
 					}}
-					className="input"
+					id="password"
 				/>
 
-				<button onClick={this.getUser} className="login-button">
-					Login
-				</button>
-				<Link to="/register">
-					<p className="register-link">Create an account</p>
-				</Link>
+				<div className="button-wrapper">
+					<button onClick={this.getUser} id="login">
+						Login
+					</button>
+					<button id="search">Search</button>
+					<button onClick={this.createUser} id="create">
+						Create
+					</button>
+				</div>
 			</div>
 		);
 	}

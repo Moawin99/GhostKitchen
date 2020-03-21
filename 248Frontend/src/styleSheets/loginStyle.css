@@ -4,47 +4,32 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	margin-left: 41em;
-	margin-top: 10em;
-	padding: 2em 4em 2em;
-	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	background-color: white;
+	margin-left: 45em;
 }
 
-.input {
-	padding: 5px;
-	box-sizing: border-box;
-	border: 3px solid #ccc;
-	-webkit-transition: .5s;
-	transition: .5s;
-	outline: none;
-	margin: .5em;
+#login {
+	position: relative;
+	margin-top: 10px;
+	width: 150px;
+	margin-right: 10px;
 }
 
-.input:focus {
-	border: 3px solid #555;
+#search {
+	position: relative;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 150px;
 }
 
-.login-button {
-	margin-top: 1em;
-	border: none;
-	background-color: #008cba;
-	color: white;
-	border: 2px solid #008cba;
-	padding: 16px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	transition-duration: .4s;
-	width: 100%;
+#create {
+	position: relative;
+	margin-top: 10px;
+	margin-left: 10px;
+	width: 150px;
 }
 
-.login-button:hover {
-	background-color: white;
-	color: black;
-}
-
-.register-link {
-	margin-top: 1em;
-	margin-left: 10.4em;
+.button-wrapper {
+	display: flex;
+	justify-content: center;
 }
