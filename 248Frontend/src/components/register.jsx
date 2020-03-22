@@ -97,11 +97,10 @@ class Register extends Component {
 					}}
 					className="inputfield"
 				/>
-				<div id="button-wrapper">
-					<button id="register-button" onClick={this.createUser}>
-						Register
-					</button>
-				</div>
+
+				<button id="register-button" onClick={this.createUser}>
+					Register
+				</button>
 			</div>
 		);
 	}

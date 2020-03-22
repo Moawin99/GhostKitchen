@@ -27,5 +27,11 @@
 	margin-top: 1em;
 }
 
-.nav-div {
+#signIn-link {
+	margin-left: 80em;
+}
+
+#signIn-text {
+	margin-top: 1.7em;
+	font-size: 25px;
 }
