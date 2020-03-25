@@ -1,36 +1,56 @@
 package JavaBackend.app.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles",joinColumns = @JoinColumn(name = "user_id"))
+    private Set<Role> roles = new HashSet<>();
 
-    @Column(name="firstname")
+    public Long getId() {
+        return id;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @Column(name = "firstname")
     private String firstName;
 
-    @Column(name="lastname")
+    @Column(name = "lastname")
     private String lastName;
 
-    @Column(name="username")
+    @Column(name = "username")
     private String userName;
 
-    @Column(name="password")
+    @Column(name = "password")
     private String password;
 
-    @Column(name="st.name")
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "st.name")
     private String streetName;
 
-    @Column(name="city")
+    @Column(name = "city")
     private String city;
 
-    @Column(name="state")
+    @Column(name = "state")
     private String state;
 
-    @Column(name="zip")
+    @Column(name = "zip")
     private String zip;
 
     public String getUserName() {
@@ -81,7 +101,13 @@ public class User {
         this.zip = zip;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getFirstName() {
         return firstName;

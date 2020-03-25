@@ -7,7 +7,11 @@ class Homepage extends Component {
 		this.state = {};
 	}
 	render() {
-		return <h1>HomePage</h1>;
+		return (
+			<div id="user-data-wrapper">
+				<h2>HomePage</h2>
+			</div>
+		);
 	}
 }
 

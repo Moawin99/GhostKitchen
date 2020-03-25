@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -13,37 +14,46 @@ public class UserController {
     UserRepository repository;
 
     @GetMapping("/user")
-    public List<User> findAll(){
+    public List<User> findAll() {
         return repository.findAll();
     }
 
-    @PostMapping("/user")
-    public User createUser(@RequestBody User entity){
-        return repository.save(entity);
+    @PostMapping("/user/register")
+    public ResponseEntity<?> createUser(@RequestBody User entity) {
+        if (repository.existsByUserName(entity.getUserName())){
+            return new ResponseEntity<>("Usernamer already exists", HttpStatus.BAD_REQUEST);
+        }
+        repository.save(entity);
+        return new ResponseEntity<>("Account Created", HttpStatus.OK);
     }
 
     @PostMapping("/user/login")
-    public ResponseEntity<?> login(@RequestBody User entity){
-        if(repository.getByUserName(entity.getUserName()) != null){
+    public ResponseEntity<?> login(@RequestBody User entity) {
+        if (repository.getByUserName(entity.getUserName()) != null) {
             User temp = repository.getByUserName(entity.getUserName());
-            if(temp.getPassword().equals(entity.getPassword())){
+            if (temp.getPassword().equals(entity.getPassword())) {
                 return new ResponseEntity<>(temp, HttpStatus.OK);
-            }
-            else {
+            } else {
                 return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             }
-        }
-        else{
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
 
     @PutMapping("/user/{id}")
-    public User saveOrUpdate(@RequestBody User entity, @PathVariable Long id){
+    public User saveOrUpdate(@RequestBody User entity, @PathVariable Long id) {
         return repository.findById(id).map(x -> {
             x.setFirstName(entity.getFirstName());
             x.setLastName(entity.getLastName());
+            x.setUserName(entity.getUserName());
+            x.setPassword(entity.getPassword());
+            x.setEmail(entity.getPassword());
+            x.setStreetName(entity.getStreetName());
+            x.setCity(entity.getCity());
+            x.setState(entity.getState());
+            x.setZip(entity.getZip());
             return repository.save(x);
         }).orElseGet(() -> {
             entity.setId(id);
@@ -52,8 +62,8 @@ public class UserController {
     }
 
     @DeleteMapping("/user/{id}")
-    public void deleteUser(@PathVariable Long id){
+    public void deleteUser(@PathVariable Long id) {
         repository.deleteById(id);
     }
-    
+
 }

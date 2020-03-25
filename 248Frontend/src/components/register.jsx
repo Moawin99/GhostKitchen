@@ -10,6 +10,7 @@ class Register extends Component {
 			lastName: '',
 			userName: '',
 			password: '',
+			email: '',
 			streetName: '',
 			city: '',
 			state: '',
@@ -26,6 +27,7 @@ class Register extends Component {
 				lastName: this.state.lastName,
 				userName: this.state.userName,
 				password: this.state.password,
+				email: this.state.email,
 				streetName: this.state.streetName,
 				city: this.state.city,
 				state: this.state.state,
@@ -64,8 +66,16 @@ class Register extends Component {
 				/>
 				<label className="register-text">Password:</label>
 				<input
+					type="password"
 					onChange={(e) => {
 						this.setState({ password: e.target.value });
+					}}
+					className="inputfield"
+				/>
+				<label className="register-text">Email:</label>
+				<input
+					onChange={(e) => {
+						this.setState({ email: e.target.value });
 					}}
 					className="inputfield"
 				/>

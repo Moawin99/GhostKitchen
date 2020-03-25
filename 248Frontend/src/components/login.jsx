@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styleSheets/loginStyle.css';
 import { Link } from 'react-router-dom';
