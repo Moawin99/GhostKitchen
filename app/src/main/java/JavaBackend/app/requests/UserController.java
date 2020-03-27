@@ -34,7 +34,7 @@ public class UserController {
         return repository.findAll();
     }
 
-    @PostMapping("/user/register")
+    @PostMapping("/register")
     public ResponseEntity<?> createUser(@RequestBody User entity) {
         if (repository.existsByUserName(entity.getUserName())) {
             return new ResponseEntity<>("Usernamer already exists", HttpStatus.BAD_REQUEST);
@@ -61,7 +61,7 @@ public class UserController {
         return repository.findById(princliple.getId()).get();
     }
 
-    @PutMapping("/loggout")
+    @PutMapping("/logout")
     public void loggout(){
         SecurityContextHolder.clearContext();
     }

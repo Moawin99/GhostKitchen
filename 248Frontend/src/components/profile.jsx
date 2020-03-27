@@ -7,13 +7,27 @@ class Profile extends Component {
 		this.state = {
 			person: []
 		};
+		this.logout = this.logout.bind(this);
 	}
 
 	componentDidMount() {
 		axios
-			.get('/user')
+			.get('/currentUser')
 			.then((response) => {
 				this.setState({ person: response.data });
+				console.log(this.state.person);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
+	logout() {
+		axios
+			.put('/logout')
+			.then((response) => {
+				this.setState({ person: response.data });
+				console.log(response);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -23,16 +37,8 @@ class Profile extends Component {
 	render() {
 		return (
 			<div id="info-wrapper">
-				<ul>{this.state.person.map((person) => <li>{person.firstName}</li>)}</ul>
-				{/* <h2 className="info">FirstName</h2>
-				<h2 className="info">LastName</h2>
-				<h2 className="info">UserName</h2>
-				<h2 className="info">Password</h2>
-				<h2 className="info">Email</h2>
-				<h2 className="info">StreetName</h2>
-				<h2 className="info">City</h2>
-				<h2 className="info">State</h2>
-				<h2 className="info">Zip</h2> */}
+				<h1>Welcome {this.state.person.firstName} </h1>
+				<button onClick={this.logout}>Logout</button>
 			</div>
 		);
 	}

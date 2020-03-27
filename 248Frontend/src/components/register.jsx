@@ -22,7 +22,7 @@ class Register extends Component {
 
 	createUser() {
 		axios
-			.post('/user', {
+			.post('/register', {
 				firstName: this.state.firstName,
 				lastName: this.state.lastName,
 				userName: this.state.userName,
