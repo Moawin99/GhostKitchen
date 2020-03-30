@@ -14,31 +14,68 @@ class Register extends Component {
 			streetName: '',
 			city: '',
 			state: '',
-			zip: ''
+			zip: '',
+			itemChecked: {}
 		};
 
 		this.createUser = this.createUser.bind(this);
+		this.checkItem = this.checkItem.bind(this);
+	}
+
+	checkItem(e) {
+		if (this.state.itemChecked == null) {
+			let itemChecked = this.state.itemChecked;
+			itemChecked = e.target.checked;
+			this.setState({ itemChecked: itemChecked });
+			console.log(this.state.itemChecked);
+		} else {
+			var itemChecked = this.state.itemChecked;
+			this.state.itemChecked = e.target.checked;
+			this.setState({ itemChecked: itemChecked });
+			console.log(this.state.itemChecked);
+		}
 	}
 
 	createUser() {
-		axios
-			.post('/register', {
-				firstName: this.state.firstName,
-				lastName: this.state.lastName,
-				userName: this.state.userName,
-				password: this.state.password,
-				email: this.state.email,
-				streetName: this.state.streetName,
-				city: this.state.city,
-				state: this.state.state,
-				zip: this.state.zip
-			})
-			.then(function(response) {
-				console.log(response);
-			})
-			.catch(function(error) {
-				console.log(error);
-			});
+		if (this.state.itemChecked == null || this.state.itemChecked == false) {
+			axios
+				.post('/register', {
+					firstName: this.state.firstName,
+					lastName: this.state.lastName,
+					userName: this.state.userName,
+					password: this.state.password,
+					email: this.state.email,
+					streetName: this.state.streetName,
+					city: this.state.city,
+					state: this.state.state,
+					zip: this.state.zip
+				})
+				.then(function(response) {
+					console.log(response);
+				})
+				.catch(function(error) {
+					console.log(error);
+				});
+		} else {
+			axios
+				.post('/register/owner', {
+					firstName: this.state.firstName,
+					lastName: this.state.lastName,
+					userName: this.state.userName,
+					password: this.state.password,
+					email: this.state.email,
+					streetName: this.state.streetName,
+					city: this.state.city,
+					state: this.state.state,
+					zip: this.state.zip
+				})
+				.then(function(response) {
+					console.log(response);
+				})
+				.catch(function(error) {
+					console.log(error);
+				});
+		}
 	}
 	render() {
 		return (
@@ -111,6 +148,10 @@ class Register extends Component {
 				<button id="register-button" onClick={this.createUser}>
 					Register
 				</button>
+				<div id="owner-container">
+					<input id="owner-checkbox" type="checkbox" onChange={(e) => this.checkItem(e)} />
+					<label for="owner-checkbox">Restaurant Owner</label>
+				</div>
 			</div>
 		);
 	}

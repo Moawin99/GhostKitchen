@@ -46,6 +46,18 @@ public class UserController {
         return new ResponseEntity<>("Account Created", HttpStatus.OK);
     }
 
+    @PostMapping("/register/owner")
+    public ResponseEntity<?> createOwner(@RequestBody User entity){
+        if (repository.existsByUserName(entity.getUserName())) {
+            return new ResponseEntity<>("UserName already exists", HttpStatus.BAD_REQUEST);
+        }
+        entity.setPassword(encoder.encode(entity.getPassword()));
+        Role userRole = roleRepository.findByName(RoleName.ROLE_OWNER);
+        entity.setRoles(Collections.singleton(userRole));
+        repository.save(entity);
+        return new ResponseEntity<>("Owner Account Created", HttpStatus.OK);
+    }
+
     @PostMapping("/user/login")
     public ResponseEntity<?> login(@RequestBody User entity) {
         Authentication authentication = manager.authenticate(
@@ -73,7 +85,7 @@ public class UserController {
             x.setLastName(entity.getLastName());
             x.setUserName(entity.getUserName());
             x.setPassword(entity.getPassword());
-            x.setEmail(entity.getPassword());
+            x.setEmail(entity.getEmail());
             x.setStreetName(entity.getStreetName());
             x.setCity(entity.getCity());
             x.setState(entity.getState());

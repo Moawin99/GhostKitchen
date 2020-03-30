@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/**/login","/**/register")
+                .antMatchers("/**/login","/**/register","/**/owner")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
