@@ -1,10 +1,7 @@
 package JavaBackend.app.requests;
 
 import JavaBackend.app.config.UserPrincliples;
-import JavaBackend.app.model.CurrentUser;
-import JavaBackend.app.model.Role;
-import JavaBackend.app.model.RoleName;
-import JavaBackend.app.model.User;
+import JavaBackend.app.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping("/register/owner")
-    public ResponseEntity<?> createOwner(@RequestBody User entity){
+    public ResponseEntity<?> createOwner(@RequestBody User entity) {
         if (repository.existsByUserName(entity.getUserName())) {
             return new ResponseEntity<>("UserName already exists", HttpStatus.BAD_REQUEST);
         }
@@ -74,7 +71,7 @@ public class UserController {
     }
 
     @PutMapping("/logout")
-    public void loggout(){
+    public void loggout() {
         SecurityContextHolder.clearContext();
     }
 
@@ -95,6 +92,40 @@ public class UserController {
             entity.setId(id);
             return repository.save(entity);
         });
+    }
+
+    @PutMapping("/owner/restaurant")
+    public ResponseEntity<?> saveOrUpdateRestaurant(@RequestBody Restaurant restaurant, @CurrentUser UserPrincliples userPrincliples) {
+        User temp = repository.findById(userPrincliples.getId()).get();
+        if (temp.getRoles().contains(roleRepository.findByName(RoleName.ROLE_OWNER))) {
+            if (temp.getRestaurant() != null) {
+                repository.findById(temp.getId()).map(x -> {
+                    x.getRestaurant().setName(restaurant.getName());
+                    x.getRestaurant().setStreetName(restaurant.getStreetName());
+                    x.getRestaurant().setCity(restaurant.getCity());
+                    x.getRestaurant().setState(restaurant.getState());
+                    x.getRestaurant().setZip(restaurant.getZip());
+                    repository.save(x);
+                    return ResponseEntity.ok("Restaurant Updated!");
+                });
+                return ResponseEntity.ok("Restaurant Updated!");
+            }
+            else {
+                repository.findById(temp.getId()).map(x -> {
+                    x.setRestaurant(new Restaurant());
+                    x.getRestaurant().setName(restaurant.getName());
+                    x.getRestaurant().setStreetName(restaurant.getStreetName());
+                    x.getRestaurant().setCity(restaurant.getCity());
+                    x.getRestaurant().setState(restaurant.getState());
+                    x.getRestaurant().setZip(restaurant.getZip());
+                    repository.save(x);
+                    return ResponseEntity.ok("Restaurant Saved");
+                });
+                return ResponseEntity.ok("Restaurant Saved");
+            }
+        }
+
+        return new ResponseEntity<>("Regular users cannot access personal restaurant data!", HttpStatus.FORBIDDEN);
     }
 
     @DeleteMapping("/user/{id}")

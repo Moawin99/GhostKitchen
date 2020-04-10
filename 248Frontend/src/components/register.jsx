@@ -15,7 +15,7 @@ class Register extends Component {
 			city: '',
 			state: '',
 			zip: '',
-			itemChecked: {}
+			itemChecked: false
 		};
 
 		this.createUser = this.createUser.bind(this);
@@ -23,21 +23,14 @@ class Register extends Component {
 	}
 
 	checkItem(e) {
-		if (this.state.itemChecked == null) {
-			let itemChecked = this.state.itemChecked;
-			itemChecked = e.target.checked;
-			this.setState({ itemChecked: itemChecked });
-			console.log(this.state.itemChecked);
-		} else {
-			var itemChecked = this.state.itemChecked;
-			this.state.itemChecked = e.target.checked;
-			this.setState({ itemChecked: itemChecked });
-			console.log(this.state.itemChecked);
-		}
+		this.setState({
+			itemChecked: e.target.checked
+		});
+		console.log(this.state.itemChecked);
 	}
 
 	createUser() {
-		if (this.state.itemChecked == null || this.state.itemChecked == false) {
+		if (this.state.itemChecked === false) {
 			axios
 				.post('/register', {
 					firstName: this.state.firstName,
@@ -149,8 +142,13 @@ class Register extends Component {
 					Register
 				</button>
 				<div id="owner-container">
-					<input id="owner-checkbox" type="checkbox" onChange={(e) => this.checkItem(e)} />
-					<label for="owner-checkbox">Restaurant Owner</label>
+					<label id="restaurant-text">Restaurant Owner</label>
+					<input
+						id="owner-checkbox"
+						value={this.state.itemChecked}
+						type="checkbox"
+						onChange={(e) => this.checkItem(e)}
+					/>
 				</div>
 			</div>
 		);
