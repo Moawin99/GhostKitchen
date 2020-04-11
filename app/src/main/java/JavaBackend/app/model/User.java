@@ -43,7 +43,7 @@ public class User {
     private String zip;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @JoinColumn(name = "Restaurant_ID")
     private Restaurant restaurant;
 
     public Long getId() {
