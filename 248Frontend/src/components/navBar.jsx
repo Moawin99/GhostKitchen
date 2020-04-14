@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import '../styleSheets/navBarStyle.css';
 import logo from '../pictures/ghostKitchenLogo.png';
 import { Link } from 'react-router-dom';
+import './dropdown';
+import DropDown from './dropdown';
 
 class NavBar extends Component {
 	constructor(props) {
@@ -13,13 +15,13 @@ class NavBar extends Component {
 			<div className="nav-div">
 				<nav className="nav-bar">
 					<div className="logo-brand-container">
-						<img src={logo} alt="logo" className="logo-picture" />
+						<Link to="/">
+							<img src={logo} alt="logo" className="logo-picture" />
+						</Link>
 						<h1 className="header">Ghost Kitchen</h1>
 					</div>
 					<div id="signIn-link">
-						<Link to="/login">
-							<p id="signIn-text">Sign In</p>
-						</Link>
+						<DropDown />
 					</div>
 				</nav>
 			</div>

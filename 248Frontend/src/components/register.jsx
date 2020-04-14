@@ -26,7 +26,6 @@ class Register extends Component {
 		this.setState({
 			itemChecked: e.target.checked
 		});
-		console.log(this.state.itemChecked);
 	}
 
 	createUser() {

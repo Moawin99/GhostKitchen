@@ -6,7 +6,8 @@ class Homepage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			person: []
+			person: [],
+			isLoggedIn: false
 		};
 	}
 
@@ -15,6 +16,7 @@ class Homepage extends Component {
 			.get('/currentUser')
 			.then((response) => {
 				this.setState({ person: response.data });
+				this.setState({ isLoggedIn: true });
 				console.log(this.state.person);
 			})
 			.catch((error) => {
@@ -23,11 +25,20 @@ class Homepage extends Component {
 	}
 
 	render() {
-		return (
-			<div id="user-data-wrapper">
-				<h2>Welcome {this.state.person.firstName}</h2>
+		return this.state.isLoggedIn ? (
+			<div>
+				<h1>Welcome {this.state.person.firstName}</h1>
+			</div>
+		) : (
+			<div>
+				<h1>Welcome Guest</h1>
 			</div>
 		);
+		// return (
+		// 	<div id="user-data-wrapper">
+		// 		<h2>Welcome {this.state.person.firstName}</h2>
+		// 	</div>
+		// );
 	}
 }
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
 class RestaurantRegister extends Component {
@@ -11,10 +11,24 @@ class RestaurantRegister extends Component {
 			state: '',
 			zip: ''
 		};
+		this.createRestaurant = this.createRestaurant.bind(this);
 	}
 
 	createRestaurant() {
-		axios.put('/owner/restaurant', {});
+		axios
+			.put('/owner/restaurant', {
+				name: this.state.name,
+				streetName: this.state.streetName,
+				city: this.state.state,
+				state: this.state.state,
+				zip: this.state.zip
+			})
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 
 	render() {
@@ -56,7 +70,9 @@ class RestaurantRegister extends Component {
 					}}
 				/>
 
-				<button id="register-button">Register</button>
+				<button id="register-button" onClick={this.createRestaurant}>
+					Register
+				</button>
 			</div>
 		);
 	}
