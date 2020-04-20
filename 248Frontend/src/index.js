@@ -7,18 +7,21 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Homepage from './components/homepage.jsx';
 import Profile from './components/profile.jsx';
 import RestaurantRegister from './components/restaurantRegister.jsx';
+import { GlobalProvider } from './context/globalContext';
 
 ReactDOM.render(
 	<div>
 		<Router>
-			<NavBar />
-			<Switch>
-				<Route path="/" exact component={Homepage} />
-				<Route path="/register" component={Register} />
-				<Route path="/login" component={CreateLogin} />
-				<Route path="/profile" component={Profile} />
-				<Route path="/restaurantRegister" component={RestaurantRegister} />
-			</Switch>
+			<GlobalProvider value={false}>
+				<NavBar />
+				<Switch>
+					<Route path="/" exact component={Homepage} />
+					<Route path="/register" component={Register} />
+					<Route path="/login" component={CreateLogin} />
+					<Route path="/profile" component={Profile} />
+					<Route path="/restaurantRegister" component={RestaurantRegister} />
+				</Switch>
+			</GlobalProvider>
 		</Router>
 	</div>,
 	document.getElementById('root')

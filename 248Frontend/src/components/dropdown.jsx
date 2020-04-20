@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../styleSheets/dropdownStyle.css';
+import Axios from 'axios';
 
 class DropDown extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			person: [],
 			displayMenu: false,
 			isLoggedIn: false
 		};
 		this.showDropDownMenu = this.showDropDownMenu.bind(this);
 		this.hideDropDownMenu = this.hideDropDownMenu.bind(this);
+	}
+
+	componentDidMount() {
+		Axios.get('/currentUser')
+			.then((response) => {
+				this.setState({ person: response.data });
+				this.setState({ isLoggedIn: true });
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 
 	showDropDownMenu(e) {
@@ -32,17 +45,19 @@ class DropDown extends Component {
 				<div className="button" onClick={this.showDropDownMenu}>
 					My Settings
 				</div>
-				{this.state.displayMenu ? (
-					<ul className="settings-list">
-						<li className="list-element">
-							<Link to="/login" className="link">
-								Login
-							</Link>
+				{this.state.displayMenu ? this.state.isLoggedIn ? (
+					<ul className="list-container">
+						<li>
+							<Link to="/profile">Profile</Link>
 						</li>
-						<li className="list-element">
-							<Link to="/profile" className="link">
-								Profile
-							</Link>
+					</ul>
+				) : (
+					<ul className="list-container">
+						<li>
+							<Link to="/Login">Login</Link>
+						</li>
+						<li>
+							<Link to="/register">Register</Link>
 						</li>
 					</ul>
 				) : null}

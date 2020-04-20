@@ -28,7 +28,8 @@
 }
 
 #signIn-link {
-	margin-left: 80em;
+	position: absolute;
+	right: 0;
 	height: 100px;
 }
 

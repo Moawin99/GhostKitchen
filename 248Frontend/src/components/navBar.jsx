@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import '../styleSheets/navBarStyle.css';
 import logo from '../pictures/ghostKitchenLogo.png';
 import { Link } from 'react-router-dom';
-import './dropdown';
-import DropDown from './dropdown';
+import DropDownMenu from './dropDownMenu';
+import GlobalContext from '../context/globalContext';
 
 class NavBar extends Component {
+	static contextType = GlobalContext;
 	constructor(props) {
 		super(props);
 		this.state = {};
@@ -21,7 +22,7 @@ class NavBar extends Component {
 						<h1 className="header">Ghost Kitchen</h1>
 					</div>
 					<div id="signIn-link">
-						<DropDown />
+						<DropDownMenu />
 					</div>
 				</nav>
 			</div>

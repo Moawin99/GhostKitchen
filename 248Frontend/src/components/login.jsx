@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../styleSheets/loginStyle.css';
 import { Link } from 'react-router-dom';
+import GlobalContext from '../context/globalContext';
 
 class CreateLogin extends Component {
+	static contextType = GlobalContext;
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -15,13 +17,25 @@ class CreateLogin extends Component {
 	}
 
 	getUser() {
+		const { setisLoggedIn, setcurrentUser, setrole } = this.context;
 		axios
 			.post('/user/login', {
 				userName: this.state.userName,
 				password: this.state.password
 			})
 			.then(function(response) {
+				setisLoggedIn(true);
 				console.log(response);
+				axios
+					.get('/currentUser')
+					.then((response) => {
+						setcurrentUser(response.data);
+						setrole(response.data.roles);
+						console.log(response.data);
+					})
+					.catch((error) => {
+						console.log(error);
+					});
 			})
 			.catch(function(error) {
 				console.log(error);

@@ -12,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collections;
 import java.util.List;
 
@@ -70,9 +72,11 @@ public class UserController {
         return repository.findById(princliple.getId()).get();
     }
 
-    @PutMapping("/logout")
-    public void loggout() {
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpServletRequest request) throws ServletException {
         SecurityContextHolder.clearContext();
+        request.logout();
+        return ResponseEntity.ok("User Logged Out");
     }
 
     @PutMapping("/user/{id}")
