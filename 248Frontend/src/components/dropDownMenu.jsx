@@ -17,7 +17,7 @@ const DropDownMenu = () => {
 
 
 	const renderList = () => {
-		if (displayMenu && context.isLoggedIn && context.role.id == 1) {
+		if (displayMenu && context.isLoggedIn && context.roleId === 1) {
 			return (
                 <>
 					<li>
@@ -25,7 +25,19 @@ const DropDownMenu = () => {
 					</li>
                 </>
 			);
-		} else if (displayMenu) {
+		} else if(displayMenu && context.isLoggedIn && context.roleId === 2){
+			return (
+				<>
+					<li>
+						<Link className="link" to="/profile">Profile</Link>
+					</li>
+					<li>
+						<Link className="link" to="/restaurantregister">My Restaurant</Link>
+					</li>
+				</>
+			)
+		} 
+		else if (displayMenu) {
 			return (
 				<>
 					<li>
@@ -44,9 +56,10 @@ const DropDownMenu = () => {
 	return (
 		<div className="dropdown" style={{ width: '200px' }}>
 			<div className="button" onClick={(e) => showDropDownMenu(e)}>
-				Welcome {context.currentUser.firstName}!
+				Welcome {context.currentUser.firstName}
 			</div>
 			<ul className="list-container">{renderList()}</ul>
+			{console.log(context.role)}
     
 		</div>
 	);

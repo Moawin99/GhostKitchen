@@ -7,7 +7,7 @@ class GlobalProvider extends Component {
 	state = {
 		isLoggedIn: false,
 		currentUser: [],
-		role: ''
+		roleId: ''
 	};
 
 	setisLoggedIn = (e) => {
@@ -18,20 +18,22 @@ class GlobalProvider extends Component {
 		this.setState({ currentUser: e });
 	};
 
-	setrole = (e) => {
-		this.setState({ role: e });
+	setroleId = (e) => {
+		this.setState({ roleId: e });
 	};
 
 	render() {
 		const { children } = this.props;
 		const { isLoggedIn } = this.state;
 		const { currentUser } = this.state;
-		const { role } = this.state;
+		const { roleId } = this.state;
 		const { setisLoggedIn } = this;
 		const { setcurrentUser } = this;
-		const { setrole } = this;
+		const { setroleId } = this;
 		return (
-			<GlobalContext.Provider value={{ isLoggedIn, setisLoggedIn, currentUser, setcurrentUser, role, setrole }}>
+			<GlobalContext.Provider
+				value={{ isLoggedIn, setisLoggedIn, currentUser, setcurrentUser, roleId, setroleId }}
+			>
 				{children}
 			</GlobalContext.Provider>
 		);

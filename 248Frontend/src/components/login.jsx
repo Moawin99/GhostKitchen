@@ -17,7 +17,7 @@ class CreateLogin extends Component {
 	}
 
 	getUser() {
-		const { setisLoggedIn, setcurrentUser, setrole } = this.context;
+		const { setisLoggedIn, setcurrentUser, setroleId } = this.context;
 		axios
 			.post('/user/login', {
 				userName: this.state.userName,
@@ -30,7 +30,7 @@ class CreateLogin extends Component {
 					.get('/currentUser')
 					.then((response) => {
 						setcurrentUser(response.data);
-						setrole(response.data.roles);
+						setroleId(response.data.roles[0].id);
 						console.log(response.data);
 					})
 					.catch((error) => {

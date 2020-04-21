@@ -25,7 +25,9 @@ public class Restaurant {
     @Column(name = "zip")
     private String zip;
 
-//    private List<MenuItem> menu;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "restaurant_ID")
+    private List<MenuItem> menu;
 
     public Long getId() {
         return id;
@@ -59,9 +61,7 @@ public class Restaurant {
         return state;
     }
 
-    public void setState(String state) {
-        this.state = state;
-    }
+    public void setState(String state) { this.state = state; }
 
     public String getZip() {
         return zip;
@@ -70,4 +70,8 @@ public class Restaurant {
     public void setZip(String zip) {
         this.zip = zip;
     }
+
+    public List<MenuItem> getMenu() { return menu; }
+
+
 }

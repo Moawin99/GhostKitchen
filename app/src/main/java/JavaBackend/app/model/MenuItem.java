@@ -10,9 +10,6 @@ public class MenuItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "restaurantname")
-    private String restaurantName;
-
     @Column(name = "productname")
     private String name;
 
@@ -22,18 +19,11 @@ public class MenuItem {
     @Column(name = "price")
     private double price;
 
-
+    @ManyToOne
+    private Restaurant restaurant;
 
     public Long getId() {
         return id;
-    }
-
-    public String getRestaurantName() {
-        return restaurantName;
-    }
-
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
     }
 
     public String getName() {
