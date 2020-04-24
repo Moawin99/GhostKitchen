@@ -17,7 +17,7 @@ class CreateLogin extends Component {
 	}
 
 	getUser() {
-		const { setisLoggedIn, setcurrentUser, setroleId } = this.context;
+		const { setisLoggedIn, setcurrentUser, setroleId, setMenu } = this.context;
 		axios
 			.post('/user/login', {
 				userName: this.state.userName,
@@ -31,6 +31,9 @@ class CreateLogin extends Component {
 					.then((response) => {
 						setcurrentUser(response.data);
 						setroleId(response.data.roles[0].id);
+						if (response.data.roles[0].id === 2) {
+							setMenu(response.data.restaurant.menu);
+						}
 						console.log(response.data);
 					})
 					.catch((error) => {

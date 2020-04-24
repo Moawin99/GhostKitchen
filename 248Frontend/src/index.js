@@ -8,6 +8,7 @@ import Homepage from './components/homepage.jsx';
 import Profile from './components/profile.jsx';
 import RestaurantRegister from './components/restaurantRegister.jsx';
 import { GlobalProvider } from './context/globalContext';
+import MenuItemPage from './components/menuItemPage.jsx';
 
 ReactDOM.render(
 	<div>
@@ -20,6 +21,7 @@ ReactDOM.render(
 					<Route path="/login" component={CreateLogin} />
 					<Route path="/profile" component={Profile} />
 					<Route path="/restaurantRegister" component={RestaurantRegister} />
+					<Route path="/menuItem" component={MenuItemPage} />
 				</Switch>
 			</GlobalProvider>
 		</Router>

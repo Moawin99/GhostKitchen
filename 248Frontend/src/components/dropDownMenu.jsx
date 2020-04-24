@@ -34,6 +34,9 @@ const DropDownMenu = () => {
 					<li>
 						<Link className="link" to="/restaurantregister">My Restaurant</Link>
 					</li>
+					<li>
+						<Link className="link" to="/menuItem">MenuItems</Link>
+					</li>
 				</>
 			)
 		} 
@@ -59,7 +62,7 @@ const DropDownMenu = () => {
 				Welcome {context.currentUser.firstName}
 			</div>
 			<ul className="list-container">{renderList()}</ul>
-			{console.log(context.role)}
+			
     
 		</div>
 	);

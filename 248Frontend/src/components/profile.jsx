@@ -11,7 +11,7 @@ class Profile extends Component {
 	}
 
 	logout() {
-		const { setisLoggedIn, setcurrentUser } = this.context;
+		const { setisLoggedIn, setcurrentUser, setMenu, setroleId } = this.context;
 		axios
 			.post('/logout')
 			.then((response) => {
@@ -20,6 +20,8 @@ class Profile extends Component {
 			.catch((error) => {
 				setisLoggedIn(false);
 				setcurrentUser([]);
+				setMenu([]);
+				setroleId('');
 			});
 	}
 

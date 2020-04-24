@@ -1,0 +1,39 @@
+.name-fields {
+	display: flex;
+	flex-direction: column;
+	width: 22em;
+	margin-left: 42em;
+	margin-top: 14em;
+	padding: 2em 2em 2em 3em;
+	background-color: white;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.inputfields {
+	width: 22em;
+	padding: 3px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	border: 3px solid #ccc;
+	-webkit-transition: 0.5s;
+	transition: 0.5s;
+	outline: none;
+}
+
+.inputfields:focus {
+	border: 3px solid #555;
+}
+
+.create-button {
+	margin-top: 1em;
+	border: none;
+	background-color: #008cba;
+	color: white;
+	border: 2px solid #008cba;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	transition-duration: .4s;
+	width: 92%;
+}

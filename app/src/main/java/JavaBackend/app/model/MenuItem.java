@@ -1,52 +1,15 @@
 package JavaBackend.app.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
-@Table(name = "menuitems")
-public class MenuItem {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class MenuItem extends Item{
+    public MenuItem(){}
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "productname")
-    private String name;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "price")
-    private double price;
-
-    @ManyToOne
-    private Restaurant restaurant;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
+    public MenuItem(String name, String description, double price, Restaurant restaurant){
+        super(name, description, price, restaurant);
     }
 }

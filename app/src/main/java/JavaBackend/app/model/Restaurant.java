@@ -25,7 +25,7 @@ public class Restaurant {
     @Column(name = "zip")
     private String zip;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "restaurant_ID")
     private List<MenuItem> menu;
 

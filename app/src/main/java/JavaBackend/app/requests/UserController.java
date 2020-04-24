@@ -101,53 +101,42 @@ public class UserController {
     @PutMapping("/owner/restaurant")
     public ResponseEntity<?> saveOrUpdateRestaurant(@RequestBody Restaurant restaurant, @CurrentUser UserPrincliples userPrincliples) {
         User temp = repository.findById(userPrincliples.getId()).get();
-        if (temp.getRoles().contains(roleRepository.findByName(RoleName.ROLE_OWNER))) {
-            if (temp.getRestaurant() != null) {
-                repository.findById(temp.getId()).map(x -> {
-                    x.getRestaurant().setName(restaurant.getName());
-                    x.getRestaurant().setStreetName(restaurant.getStreetName());
-                    x.getRestaurant().setCity(restaurant.getCity());
-                    x.getRestaurant().setState(restaurant.getState());
-                    x.getRestaurant().setZip(restaurant.getZip());
-                    repository.save(x);
-                    return ResponseEntity.ok("Restaurant Updated!");
-                });
+        if (temp.getRestaurant() != null) {
+            repository.findById(temp.getId()).map(x -> {
+                x.getRestaurant().setName(restaurant.getName());
+                x.getRestaurant().setStreetName(restaurant.getStreetName());
+                x.getRestaurant().setCity(restaurant.getCity());
+                x.getRestaurant().setState(restaurant.getState());
+                x.getRestaurant().setZip(restaurant.getZip());
+                repository.save(x);
                 return ResponseEntity.ok("Restaurant Updated!");
-            }
-            else {
-                repository.findById(temp.getId()).map(x -> {
-                    x.setRestaurant(new Restaurant());
-                    x.getRestaurant().setName(restaurant.getName());
-                    x.getRestaurant().setStreetName(restaurant.getStreetName());
-                    x.getRestaurant().setCity(restaurant.getCity());
-                    x.getRestaurant().setState(restaurant.getState());
-                    x.getRestaurant().setZip(restaurant.getZip());
-                    repository.save(x);
-                    return ResponseEntity.ok("Restaurant Saved");
-                });
+            });
+        } else {
+            repository.findById(temp.getId()).map(x -> {
+                x.setRestaurant(new Restaurant());
+                x.getRestaurant().setName(restaurant.getName());
+                x.getRestaurant().setStreetName(restaurant.getStreetName());
+                x.getRestaurant().setCity(restaurant.getCity());
+                x.getRestaurant().setState(restaurant.getState());
+                x.getRestaurant().setZip(restaurant.getZip());
+                repository.save(x);
                 return ResponseEntity.ok("Restaurant Saved");
-            }
+            });
         }
-
-        return new ResponseEntity<>("Regular users cannot access personal restaurant data!", HttpStatus.FORBIDDEN);
+          return new ResponseEntity<>("Regular users cannot access personal restaurant data!", HttpStatus.FORBIDDEN);
     }
 
+
     @PutMapping("/owner/restaurant/menuItems")
-    public ResponseEntity<?> createMenuItem(@RequestBody MenuItem item, @CurrentUser UserPrincliples princliples){
+    public ResponseEntity<?> createMenuItem(@RequestBody MenuItem item, @CurrentUser UserPrincliples princliples) {
         User temp = repository.findById(princliples.getId()).get();
-        if(temp.getRoles().contains(roleRepository.findByName(RoleName.ROLE_OWNER))){
-            MenuItem tempItem = new MenuItem();
-            tempItem.setName(item.getName());
-            tempItem.setDescription(item.getDescription());
-            tempItem.setPrice(item.getPrice());
             repository.findById(princliples.getId()).map(x -> {
-                x.getRestaurant().getMenu().add(tempItem);
+                item.setRestaurant(temp.getRestaurant());
+                x.getRestaurant().getMenu().add(item);
                 repository.save(x);
                 return new ResponseEntity<>("Item Created!", HttpStatus.OK);
             });
-            return new ResponseEntity<>(tempItem.getName() + " Created!", HttpStatus.OK);
-        }
-        return new ResponseEntity<>("Permission Denied", HttpStatus.FORBIDDEN);
+            return new ResponseEntity<>(item.getName() + " Created!", HttpStatus.OK);
     }
 
     @DeleteMapping("/user/{id}")
