@@ -7,6 +7,11 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User {
+    public User(){
+        this.cart = new Cart();
+    }
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -45,6 +50,10 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Restaurant_ID")
     private Restaurant restaurant;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Cart_ID")
+    private Cart cart;
 
     public Long getId() {
         return id;
@@ -139,4 +148,8 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Cart getCart() { return cart; }
+
+    public void setCart(Cart cart) { this.cart = cart; }
 }

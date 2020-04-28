@@ -101,42 +101,36 @@ public class UserController {
     @PutMapping("/owner/restaurant")
     public ResponseEntity<?> saveOrUpdateRestaurant(@RequestBody Restaurant restaurant, @CurrentUser UserPrincliples userPrincliples) {
         User temp = repository.findById(userPrincliples.getId()).get();
-        if (temp.getRestaurant() != null) {
-            repository.findById(temp.getId()).map(x -> {
-                x.getRestaurant().setName(restaurant.getName());
-                x.getRestaurant().setStreetName(restaurant.getStreetName());
-                x.getRestaurant().setCity(restaurant.getCity());
-                x.getRestaurant().setState(restaurant.getState());
-                x.getRestaurant().setZip(restaurant.getZip());
-                repository.save(x);
-                return ResponseEntity.ok("Restaurant Updated!");
-            });
-        } else {
-            repository.findById(temp.getId()).map(x -> {
-                x.setRestaurant(new Restaurant());
-                x.getRestaurant().setName(restaurant.getName());
-                x.getRestaurant().setStreetName(restaurant.getStreetName());
-                x.getRestaurant().setCity(restaurant.getCity());
-                x.getRestaurant().setState(restaurant.getState());
-                x.getRestaurant().setZip(restaurant.getZip());
-                repository.save(x);
-                return ResponseEntity.ok("Restaurant Saved");
-            });
+        if(temp.getRestaurant() == null){
+            temp.setRestaurant(new Restaurant());
+            temp.getRestaurant().setName(restaurant.getName());
+            temp.getRestaurant().setStreetName(restaurant.getStreetName());
+            temp.getRestaurant().setCity(restaurant.getCity());
+            temp.getRestaurant().setState(restaurant.getState());
+            temp.getRestaurant().setZip(restaurant.getZip());
+            repository.save(temp);
+            return ResponseEntity.ok("Restaurant Created");
         }
-          return new ResponseEntity<>("Regular users cannot access personal restaurant data!", HttpStatus.FORBIDDEN);
+        else{
+            temp.getRestaurant().setName(restaurant.getName());
+            temp.getRestaurant().setStreetName(restaurant.getStreetName());
+            temp.getRestaurant().setCity(restaurant.getCity());
+            temp.getRestaurant().setState(restaurant.getState());
+            temp.getRestaurant().setZip(restaurant.getZip());
+            repository.save(temp);
+            return ResponseEntity.ok("Restaurant has been updated");
+        }
+
     }
 
 
     @PutMapping("/owner/restaurant/menuItems")
     public ResponseEntity<?> createMenuItem(@RequestBody MenuItem item, @CurrentUser UserPrincliples princliples) {
         User temp = repository.findById(princliples.getId()).get();
-            repository.findById(princliples.getId()).map(x -> {
-                item.setRestaurant(temp.getRestaurant());
-                x.getRestaurant().getMenu().add(item);
-                repository.save(x);
-                return new ResponseEntity<>("Item Created!", HttpStatus.OK);
-            });
-            return new ResponseEntity<>(item.getName() + " Created!", HttpStatus.OK);
+        item.setRestaurant(temp.getRestaurant());
+        temp.getRestaurant().getMenu().add(item);
+        repository.save(temp);
+        return ResponseEntity.ok(item.getName() + " Saved!");
     }
 
     @DeleteMapping("/user/{id}")
