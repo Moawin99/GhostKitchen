@@ -1,6 +1,8 @@
 package JavaBackend.app.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Entity
@@ -62,6 +64,17 @@ public class Cart {
             }
         }
         return null;
+    }
+
+    public Double checkOut(){
+        double total = 0;
+        for (CartItem cartItem: cart){
+            total += (cartItem.getAmount() * cartItem.getPrice());
+        }
+        total += (total * .08);
+        BigDecimal bd = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP);
+        total = bd.doubleValue();
+        return total;
     }
 
     public List<CartItem> getCartList() {

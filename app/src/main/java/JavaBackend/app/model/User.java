@@ -2,6 +2,7 @@ package JavaBackend.app.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -54,6 +55,10 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Cart_ID")
     private Cart cart;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_ID")
+    private List<Invoice> orderHistory;
 
     public Long getId() {
         return id;
@@ -152,4 +157,8 @@ public class User {
     public Cart getCart() { return cart; }
 
     public void setCart(Cart cart) { this.cart = cart; }
+
+    public List<Invoice> getOrderHistory() { return orderHistory; }
+
+    public void setOrderHistory(List<Invoice> orderHistory) { this.orderHistory = orderHistory; }
 }

@@ -50,4 +50,10 @@ public class CartController {
         }
         return ResponseEntity.ok(cartItem.getName() + " removed");
     }
+
+    @GetMapping("/cart/checkout")
+    public ResponseEntity<?> checkOut(@CurrentUser UserPrincliples princliples){
+        double total = userRepository.findById(princliples.getId()).get().getCart().checkOut();
+        return ResponseEntity.ok("your total is " + total);
+    }
 }
