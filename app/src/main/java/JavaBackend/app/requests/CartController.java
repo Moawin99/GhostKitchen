@@ -3,6 +3,7 @@ package JavaBackend.app.requests;
 import JavaBackend.app.config.UserPrincliples;
 import JavaBackend.app.model.CartItem;
 import JavaBackend.app.model.CurrentUser;
+import JavaBackend.app.model.Invoice;
 import JavaBackend.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -51,9 +52,13 @@ public class CartController {
         return ResponseEntity.ok(cartItem.getName() + " removed");
     }
 
-    @GetMapping("/cart/checkout")
+    @PutMapping("/cart/checkout")
     public ResponseEntity<?> checkOut(@CurrentUser UserPrincliples princliples){
         double total = userRepository.findById(princliples.getId()).get().getCart().checkOut();
+        User temp = userRepository.findById(princliples.getId()).get();
+        Invoice invoice = new Invoice(temp);
+        temp.getOrderHistory().add(invoice);
+        userRepository.save(temp);
         return ResponseEntity.ok("your total is " + total);
     }
 }
