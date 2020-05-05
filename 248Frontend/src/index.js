@@ -9,6 +9,7 @@ import Profile from './components/profile.jsx';
 import RestaurantRegister from './components/restaurantRegister.jsx';
 import { GlobalProvider } from './context/globalContext';
 import MenuItemPage from './components/menuItemPage.jsx';
+import RestaurantPage from './components/restaurantPage.jsx';
 
 ReactDOM.render(
 	<div>
@@ -22,6 +23,7 @@ ReactDOM.render(
 					<Route path="/profile" component={Profile} />
 					<Route path="/restaurantRegister" component={RestaurantRegister} />
 					<Route path="/menuItem" component={MenuItemPage} />
+					<Route path="/restaurant/:id" exact component={RestaurantPage} />
 				</Switch>
 			</GlobalProvider>
 		</Router>

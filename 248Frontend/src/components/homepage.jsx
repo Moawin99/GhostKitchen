@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import GlobalContext from '../context/globalContext';
-import MenuItemCard from './menuItemCard';
 import Axios from 'axios';
+import RestaurantCard from './restaurantCard';
+import AboutHeader from './aboutDiv';
 
 class Homepage extends Component {
 	static contextType = GlobalContext;
 	constructor(props) {
 		super(props);
 		this.state = {
-			items: []
+			restaurants: []
 		};
 	}
 
 	componentDidMount() {
-		Axios.get('/items')
+		Axios.get('/selection')
 			.then((response) => {
-				this.setState({ items: response.data });
+				this.setState({ restaurants: response.data });
 				console.log(response.data);
 			})
 			.catch((error) => {
@@ -26,21 +27,24 @@ class Homepage extends Component {
 	render() {
 		return this.context.isLoggedIn ? (
 			<div>
-				<h1>Welcome {this.context.currentUser.firstName}</h1>
-				{this.state.items.map((item) => (
-					<MenuItemCard
-						key={item.id}
-						name={item.name}
-						price={item.price}
-						description={item.description}
-						id={item.id}
-					/>
-				))}
+				<AboutHeader />
+				<div className="selection-container">
+					<h2>Available Restaurants</h2>
+					<div className="restaurantCard-container">
+						{this.state.restaurants.map((restaurant) => (
+							<RestaurantCard
+								key={restaurant.id}
+								name={restaurant.name}
+								streetName={restaurant.streetName}
+								city={restaurant.city}
+								id={restaurant.id}
+							/>
+						))}
+					</div>
+				</div>
 			</div>
 		) : (
-			<div>
-				<h1>Welcome Guest</h1>
-			</div>
+			<AboutHeader />
 		);
 	}
 }

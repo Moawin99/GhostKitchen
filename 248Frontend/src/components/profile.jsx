@@ -36,7 +36,6 @@ class Profile extends Component {
 			.catch((error) => {
 				setisLoggedIn(false);
 				setcurrentUser([]);
-				setMenu([]);
 				setroleId('');
 				this.setState({ cart: [] });
 				this.setState({ hasData: false });
