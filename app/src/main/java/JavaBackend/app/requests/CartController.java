@@ -43,7 +43,10 @@ public class CartController {
         CartItem cartItem = cartItemRepository.findById(id).get();
         if(cartItemRepository.findById(id).get().getAmount() == 1){
             temp.getCart().removeFromCart(cartItem);
-            cartItemRepository.deleteById(id);
+            cartItemRepository.delete(cartItem);
+            userRepository.save(temp);
+            cartItemRepository.delete(cartItem);
+;
         }
         else {
             temp.getCart().removeFromCart(cartItem);

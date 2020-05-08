@@ -3,6 +3,7 @@ import GlobalContext from '../context/globalContext';
 import Axios from 'axios';
 import RestaurantCard from './restaurantCard';
 import AboutHeader from './aboutDiv';
+import '../styleSheets/homePageStyle.css';
 
 class Homepage extends Component {
 	static contextType = GlobalContext;
@@ -29,18 +30,18 @@ class Homepage extends Component {
 			<div>
 				<AboutHeader />
 				<div className="selection-container">
-					<h2>Available Restaurants</h2>
-					<div className="restaurantCard-container">
-						{this.state.restaurants.map((restaurant) => (
-							<RestaurantCard
-								key={restaurant.id}
-								name={restaurant.name}
-								streetName={restaurant.streetName}
-								city={restaurant.city}
-								id={restaurant.id}
-							/>
-						))}
-					</div>
+					<h2 className="selection-text">Available Restaurants</h2>
+				</div>
+				<div className="restaurantCard-container">
+					{this.state.restaurants.map((restaurant) => (
+						<RestaurantCard
+							key={restaurant.id}
+							name={restaurant.name}
+							streetName={restaurant.streetName}
+							city={restaurant.city}
+							id={restaurant.id}
+						/>
+					))}
 				</div>
 			</div>
 		) : (

@@ -1,0 +1,17 @@
+.selection-text {
+	font-size: 30px;
+}
+
+.selection-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 4em;
+}
+
+.restaurantCard-container {
+	display: flex;
+	justify-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 0 -5px;
+}

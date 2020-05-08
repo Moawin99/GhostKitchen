@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import '../styleSheets/restaurantCardStyle.css';
 
 class RestaurantCard extends Component {
 	constructor(props) {
@@ -14,9 +15,11 @@ class RestaurantCard extends Component {
 				}}
 			>
 				<div className="card-container">
-					<h2>{this.props.name}</h2>
-					<div>{this.props.streetName}</div>
-					<div>{this.props.city}</div>
+					<div className="card">
+						<h2>{this.props.name}</h2>
+						<p>{this.props.streetName}</p>
+						<p>{this.props.city}</p>
+					</div>
 				</div>
 			</Link>
 		);

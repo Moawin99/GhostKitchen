@@ -1,0 +1,21 @@
+.name {
+	font-size: 45px;
+}
+
+.address {
+	font-size: 20px;
+}
+
+.menu-text {
+	display: flex;
+	justify-content: center;
+}
+
+.menu {
+	font-size: 30px;
+}
+
+.menuItemCard-container {
+	display: flex;
+	justify-content: center;
+}

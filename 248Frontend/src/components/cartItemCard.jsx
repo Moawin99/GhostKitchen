@@ -14,15 +14,17 @@ class CartItemCard extends Component {
 	render() {
 		return (
 			<div>
-				<h2>{this.props.name}</h2>
-				<div>{this.props.description}</div>
-				<div>{this.props.price}</div>
-				<div>Amount = {this.props.amount}</div>
+				<h2>{this.state.name}</h2>
+				<div>{this.state.description}</div>
+				<div>{this.state.price}</div>
+				<div>Amount: {this.state.amount}</div>
 				<button
 					onClick={() => {
 						Axios.put(`/cart/remove/${this.props.id}`)
 							.then((response) => {
 								console.log(response);
+								this.setState({ amount: this.state.amount - 1 });
+								this.props.updateCart();
 							})
 							.catch((error) => {
 								console.log(error);

@@ -10,6 +10,7 @@ import RestaurantRegister from './components/restaurantRegister.jsx';
 import { GlobalProvider } from './context/globalContext';
 import MenuItemPage from './components/menuItemPage.jsx';
 import RestaurantPage from './components/restaurantPage.jsx';
+import Cart from './components/cart.jsx';
 
 ReactDOM.render(
 	<div>
@@ -24,6 +25,7 @@ ReactDOM.render(
 					<Route path="/restaurantRegister" component={RestaurantRegister} />
 					<Route path="/menuItem" component={MenuItemPage} />
 					<Route path="/restaurant/:id" exact component={RestaurantPage} />
+					<Route path="/cart" component={Cart} />
 				</Switch>
 			</GlobalProvider>
 		</Router>

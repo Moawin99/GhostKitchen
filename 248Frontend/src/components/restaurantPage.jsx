@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import MenuItemCard from './menuItemCard';
-import GlobalContext from '../context/globalContext';
+import '../styleSheets/restaurantPageStyle.css';
 
 class RestaurantPage extends Component {
 	constructor(props) {
@@ -27,14 +27,27 @@ class RestaurantPage extends Component {
 	render() {
 		return (
 			<div>
-				<h2>{this.state.restaurant.name}</h2>
-				<div>{this.state.restaurant.streetName}</div>
-				<div>{this.state.restaurant.city}</div>
-				<div>{this.state.restaurant.state}</div>
-				<div>{this.state.restaurant.zip}</div>
-				{this.state.menu.map((item) => (
-					<MenuItemCard key={item.id} name={item.name} price={item.price} description={item.description} />
-				))}
+				<div className="info-container">
+					<h2 className="name">{this.state.restaurant.name}</h2>
+					<p className="address">{this.state.restaurant.streetName}</p>
+					<p className="address">{this.state.restaurant.city}</p>
+					<p className="address">{this.state.restaurant.state}</p>
+					<p className="address">{this.state.restaurant.zip}</p>
+				</div>
+				<div className="menu-text">
+					<p className="menu">Menu</p>
+				</div>
+				<div className="menuItemCard-container">
+					{this.state.menu.map((item) => (
+						<MenuItemCard
+							key={item.id}
+							name={item.name}
+							price={item.price}
+							description={item.description}
+							id={item.id}
+						/>
+					))}
+				</div>
 			</div>
 		);
 	}
