@@ -18,7 +18,9 @@ class RestaurantCard extends Component {
 					<div className="card">
 						<h2>{this.props.name}</h2>
 						<p>{this.props.streetName}</p>
-						<p>{this.props.city}</p>
+						<p>
+							{this.props.city}, {this.props.state} {this.props.zip}
+						</p>
 					</div>
 				</div>
 			</Link>

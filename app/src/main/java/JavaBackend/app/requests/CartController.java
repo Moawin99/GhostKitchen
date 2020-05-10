@@ -76,7 +76,7 @@ public class CartController {
 
     @GetMapping("/cart/invoices")
     public ResponseEntity<?> getPastOrders(@CurrentUser UserPrincliples princliples){
-        List<Invoice> orderHistory = invoiceRepository.getAllByUserId(princliples.getId());
+        List<Invoice> orderHistory = userRepository.findById(princliples.getId()).get().getOrderHistory();
         return ResponseEntity.ok(orderHistory);
     }
 

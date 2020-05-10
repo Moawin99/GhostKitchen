@@ -19,7 +19,7 @@ class RestaurantRegister extends Component {
 			.put('/owner/restaurant', {
 				name: this.state.name,
 				streetName: this.state.streetName,
-				city: this.state.state,
+				city: this.state.city,
 				state: this.state.state,
 				zip: this.state.zip
 			})

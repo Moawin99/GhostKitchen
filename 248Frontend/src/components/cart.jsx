@@ -61,21 +61,21 @@ class Cart extends Component {
 				</div>
 				<div className="payment-container">
 					<label>Name on Card</label>
-					<input type="text" />
+					<input className="input" type="text" />
 					<label>Card Number</label>
-					<input type="text" maxLength="16" />
+					<input className="input" type="text" maxLength="16" />
 					<label>Experation Date</label>
-					<input type="text" />
+					<input className="input" type="text" />
 					<label>CVV</label>
-					<input type="text" maxLength="3" />
+					<input className="input" type="text" maxLength="3" />
 					<label>Street Address</label>
-					<input type="text" placeholder={currentUser.streetName} />
+					<input className="input" type="text" placeholder={currentUser.streetName} />
 					<label>City</label>
-					<input type="text" placeholder={currentUser.city} />
+					<input className="input" type="text" placeholder={currentUser.city} />
 					<label>State</label>
-					<input type="text" placeholder={currentUser.state} />
+					<input className="input" type="text" placeholder={currentUser.state} />
 					<label>Zip</label>
-					<input type="text" placeholder={currentUser.zip} maxLength="9" />
+					<input className="input" type="text" placeholder={currentUser.zip} maxLength="9" />
 					<div className="total-row">
 						<p>Total:</p>
 						<p>${this.state.total}</p>

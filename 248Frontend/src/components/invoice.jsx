@@ -27,6 +27,7 @@ class Invoice extends Component {
 				<div className="column-container">
 					{this.state.orderHistroy.map((invoice) => (
 						<div key={invoice.id} className="invoice-container">
+							<h2>Invoice</h2>
 							<p>Name: {invoice.name}</p>
 							<p>Address: {invoice.streetName}</p>
 							<p>{invoice.city}</p>

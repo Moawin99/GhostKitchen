@@ -39,6 +39,8 @@ class Homepage extends Component {
 							name={restaurant.name}
 							streetName={restaurant.streetName}
 							city={restaurant.city}
+							state={restaurant.state}
+							zip={restaurant.zip}
 							id={restaurant.id}
 						/>
 					))}
