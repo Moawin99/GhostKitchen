@@ -20,7 +20,7 @@ public class RestaurantController {
 
     /**
      * This method returns all the current restaurants saved in the data base
-     * @return List<Restaurant>
+     * @return List of Restaurant Objects
      */
     @GetMapping("/selection")
     public List<Restaurant> getAllRestaurants(){
@@ -29,7 +29,7 @@ public class RestaurantController {
 
     /**
      * This method returns all the current Menu items in the data base
-     * @return List<MenuItem>
+     * @return List of MenuItem Objects
      */
     @GetMapping("/items")
     public List<MenuItem> getAllMenuItems(){
