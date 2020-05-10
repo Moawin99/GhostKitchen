@@ -11,6 +11,7 @@ import { GlobalProvider } from './context/globalContext';
 import MenuItemPage from './components/menuItemPage.jsx';
 import RestaurantPage from './components/restaurantPage.jsx';
 import Cart from './components/cart.jsx';
+import Invoice from './components/invoice.jsx';
 
 ReactDOM.render(
 	<div>
@@ -26,6 +27,7 @@ ReactDOM.render(
 					<Route path="/menuItem" component={MenuItemPage} />
 					<Route path="/restaurant/:id" exact component={RestaurantPage} />
 					<Route path="/cart" component={Cart} />
+					<Route path="/invoices" component={Invoice} />
 				</Switch>
 			</GlobalProvider>
 		</Router>

@@ -26,6 +26,10 @@ const DropDownMenu = () => {
 					<li>
 						<Link className="link" to="/cart">Cart</Link>
 					</li>
+					<li>
+						<Link className="link" to="/invoices">Invoices</Link>
+					</li>
+				
                 </>
 			);
 		} else if(displayMenu && context.isLoggedIn && context.roleId === 2){
@@ -42,6 +46,9 @@ const DropDownMenu = () => {
 					</li>
 					<li>
 						<Link className="link" to="/menuItem">MenuItems</Link>
+					</li>
+					<li>
+						<Link className="link" to="/invoices">Invoices</Link>
 					</li>
 				</>
 			)

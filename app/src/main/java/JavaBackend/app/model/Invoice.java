@@ -1,5 +1,6 @@
 package JavaBackend.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -36,11 +37,13 @@ public class Invoice {
     private double total;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     private Cart cart;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_ID")
     @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
     private User user;
 
 }

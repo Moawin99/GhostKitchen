@@ -7,7 +7,7 @@ body {
 	flex-direction: column;
 	width: 22em;
 	margin-left: 40em;
-	margin-top: 4em;
+	margin-top: 3em;
 	padding: 2em;
 	background-color: white;
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -49,5 +49,11 @@ body {
 
 #owner-container {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 1em;
+}
+
+#owner-checkbox {
+	margin-right: 2em;
 }

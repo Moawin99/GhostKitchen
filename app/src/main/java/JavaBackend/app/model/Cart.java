@@ -18,6 +18,12 @@ public class Cart {
     private List<CartItem> cart;
 
     public void addOneToCart(CartItem item){
+        for(CartItem cartItem : cart){
+            if(!item.getRestaurant().getId().equals(cartItem.getRestaurant().getId())){
+                cart.clear();
+                break;
+            }
+        }
         if(findByName(item) == null){
             cart.add(item);
         }
@@ -40,17 +46,6 @@ public class Cart {
     public void addMultipleToCart(CartItem item, int amount){
         item.setAmount(amount);
         cart.add(item);
-    }
-
-    public boolean doesContain(CartItem item){
-        for (CartItem x : cart) {
-            if (x.getName().equals(item.getName()) &
-                    x.getPrice() == item.getPrice() &
-                    x.getDescription().equals(item.getDescription())) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public CartItem findByName(CartItem item){

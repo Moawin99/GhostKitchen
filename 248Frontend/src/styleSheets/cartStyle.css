@@ -1,0 +1,20 @@
+.row {
+	display: flex;
+	flex-direction: row;
+}
+
+.cart-container {
+	width: 50%;
+}
+
+.payment-container {
+	display: flex;
+	flex-direction: column;
+	width: 15%;
+}
+
+.total-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}

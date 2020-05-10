@@ -79,23 +79,22 @@ public class UserController {
         return ResponseEntity.ok("User Logged Out");
     }
 
-    @PutMapping("/user/{id}")
-    public User saveOrUpdate(@RequestBody User entity, @PathVariable Long id) {
-        return repository.findById(id).map(x -> {
-            x.setFirstName(entity.getFirstName());
-            x.setLastName(entity.getLastName());
-            x.setUserName(entity.getUserName());
-            x.setPassword(entity.getPassword());
-            x.setEmail(entity.getEmail());
-            x.setStreetName(entity.getStreetName());
-            x.setCity(entity.getCity());
-            x.setState(entity.getState());
-            x.setZip(entity.getZip());
-            return repository.save(x);
-        }).orElseGet(() -> {
-            entity.setId(id);
-            return repository.save(entity);
-        });
+    @PutMapping("/user/update")
+    public ResponseEntity<?> updateUserInfo(@RequestBody User user,@CurrentUser UserPrincliples princliples){
+       repository.findById(princliples.getId()).map(x -> {
+           x.setFirstName(user.getFirstName());
+           x.setLastName(user.getLastName());
+           x.setEmail(user.getEmail());
+           x.setStreetName(user.getStreetName());
+           x.setCity(user.getCity());
+           x.setState(user.getState());
+           x.setZip(user.getZip());
+           x.setUserName(user.getUserName());
+           x.setPassword(encoder.encode(user.getPassword()));
+           repository.save(x);
+           return ResponseEntity.ok("User Updated!");
+       });
+       return ResponseEntity.ok("User Account Updated!");
     }
 
     @PutMapping("/owner/restaurant")

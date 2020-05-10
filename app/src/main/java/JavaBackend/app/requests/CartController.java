@@ -20,6 +20,8 @@ public class CartController {
     MenuItemRepository itemRepository;
     @Autowired
     CartItemRepository cartItemRepository;
+    @Autowired
+    InvoiceRepository invoiceRepository;
 
     @GetMapping("/cart")
     public List<CartItem> getCartItems(@CurrentUser UserPrincliples princliples){
@@ -61,7 +63,21 @@ public class CartController {
         User temp = userRepository.findById(princliples.getId()).get();
         Invoice invoice = new Invoice(temp);
         temp.getOrderHistory().add(invoice);
+        temp.getCart().getCartList().clear();
         userRepository.save(temp);
         return ResponseEntity.ok("your total is " + total);
     }
+
+    @GetMapping("/cart/total")
+    public ResponseEntity<?> getTotal(@CurrentUser UserPrincliples princliples){
+       double total = userRepository.findById(princliples.getId()).get().getCart().checkOut();
+       return ResponseEntity.ok(total);
+    }
+
+    @GetMapping("/cart/invoices")
+    public ResponseEntity<?> getPastOrders(@CurrentUser UserPrincliples princliples){
+        List<Invoice> orderHistory = invoiceRepository.getAllByUserId(princliples.getId());
+        return ResponseEntity.ok(orderHistory);
+    }
+
 }

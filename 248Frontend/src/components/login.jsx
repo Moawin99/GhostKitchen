@@ -63,10 +63,11 @@ class CreateLogin extends Component {
 					}}
 					className="inputfields"
 				/>
-
-				<button id="login-button" onClick={this.getUser}>
-					Login
-				</button>
+				<Link to="/">
+					<button id="login-button" onClick={this.getUser}>
+						Login
+					</button>
+				</Link>
 				<Link to="/register">
 					<p id="register-link">Create an account</p>
 				</Link>

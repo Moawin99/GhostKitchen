@@ -1,0 +1,15 @@
+.page-container {
+	display: flex;
+	align-content: center;
+}
+
+.column-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.invoice-container {
+	display: flex;
+	flex-direction: column;
+	padding: 2em;
+}
