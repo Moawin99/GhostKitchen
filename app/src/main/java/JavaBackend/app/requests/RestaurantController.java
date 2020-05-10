@@ -18,16 +18,29 @@ public class RestaurantController {
     @Autowired
     MenuItemRepository menuItemRepository;
 
+    /**
+     * This method returns all the current restaurants saved in the data base
+     * @return List<Restaurant>
+     */
     @GetMapping("/selection")
     public List<Restaurant> getAllRestaurants(){
         return restaurantRepository.findAll();
     }
 
+    /**
+     * This method returns all the current Menu items in the data base
+     * @return List<MenuItem>
+     */
     @GetMapping("/items")
     public List<MenuItem> getAllMenuItems(){
         return menuItemRepository.findAll();
     }
 
+    /**
+     * This method returns a restaurant based off id
+     * @param id Long
+     * @return A 200 Http Status
+     */
     @GetMapping("/restaurant/{id}")
     public ResponseEntity<?> getRestaurant(@PathVariable Long id){
         return ResponseEntity.ok(restaurantRepository.findById(id).get());
